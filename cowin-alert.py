@@ -18,7 +18,7 @@ logging.basicConfig(filename='requests.log', level=logging.DEBUG,
 cowinURL = 'https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByDistrict'
 
 
-def message_slack(msg):
+def message_telegram(msg):
     msg = str(msg)
     try:
         telegram_send.send(messages=[msg])
@@ -42,12 +42,11 @@ def find_vaccine(query, headers):
                 centers = availability['centers']
                 for key in centers:
                     print('******* '+key['name']+' ********')
-                    msg = 'Name: `' + key['name'] + '` Address: `' + key['address'] + '` Fees: *' + key['fee_type']
+                    msg = 'Name: __' + key['name'] + '__ Address: ' + key['address'] + ' Fees: ' + key['fee_type']
                     for capacity in key['sessions']:
                         print(str(capacity['available_capacity'])+' on date'+str(capacity['date'])+'')
                         if capacity['available_capacity'] > 0 and capacity['min_age_limit'] < 45 :
-                            msg = msg + '* Vaccine Brand: ' + str(capacity['vaccine']) + ' For Age: `' + str(capacity['min_age_limit']) + '` Available : `' + str(capacity['available_capacity']) + '` *On Date* ' + str(capacity['date'])
-                            message_slack(msg)
+                            msg = msg + ' Vaccine Brand: ' + str(capacity['vaccine']) + ' For Age: ' + str(capacity['min_age_limit']) + ' Available : ' + str(capacity['available_capacity']) + ' *On Date* ' + str(capacity['date'])
                             logging.info(msg)
                             print(str(msg))
                             break
