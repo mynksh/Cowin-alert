@@ -14,7 +14,7 @@ logging.basicConfig(filename='requests.log', level=logging.DEBUG, format='%(asct
 
 #Setting Up Proxies
 proxies = {'http': 'http://127.0.0.1:8080', 'https': 'http://127.0.0.1:8080'}
-slackURL='https://hooks.slack.com/services/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'
+slackURL='' # add slack webhook
 cowinURL='https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByDistrict'
 #cowinURL=''
 
