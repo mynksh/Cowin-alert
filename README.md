@@ -3,11 +3,11 @@
 ![last-commit](https://img.shields.io/github/last-commit/mynksh/cowin-alert?style=for-the-badge)
 
 
-#  Covid-19 Vaccine slots avaialibity across India
+#  Covid-19 Vaccine slots availability across India
 ## Cowin-alert
 
 This is custom bot script which will alert you on telegram bot if there is any vaccine slot available in provided area.
-You customise it to filer as you need.
+You customize it to filer as you need.
 
 ## Setting up:
 ### On your Phone
