@@ -1,6 +1,10 @@
-
-
 ![Contributions welcome](https://img.shields.io/badge/contributions-welcome-orange.svg)
+![Contributors][contributors-shield]][contributors-url]
+![Forks][forks-shield]][forks-url]
+![Stargazers][stars-shield]][stars-url]
+![Issues][issues-shield]][issues-url]
+![MIT License][license-shield]][license-url]
+![LinkedIn][linkedin-shield]][linkedin-url]
 
 # Cowin-alert For Any Location
 
