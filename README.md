@@ -1,4 +1,4 @@
-![Contributions welcome](https://img.shields.io/badge/contributions-welcome-orange.svg)
+![Contributions welcome](https://img.shields.io/github/contributors/mynksh/cowin-alert?style=for-the-badge)
 ![license-shield](https://img.shields.io/github/license/mynksh/Cowin-alert?style=for-the-badge)
 ![last-commit](https://img.shields.io/github/last-commit/mynksh/cowin-alert?style=for-the-badge)
 
