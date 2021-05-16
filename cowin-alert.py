@@ -11,11 +11,12 @@ import telegram_send
 from datetime import date
 
 # Setting up log files
-logging.basicConfig(filename='requests.log', level=logging.DEBUG,
+logging.basicConfig(filename='requests.log', level=logging.INFO,
                     format='%(asctime)s.%(msecs)03d %(levelname)s %(module)s - %(funcName)s: %(message)s',
                     datefmt='%Y-%m-%d %H:%M:%S')
 
-cowinURL = 'https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByDistrict'
+cowinURLdist = 'https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByDistrict'
+cowinURLPin = 'https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByPin'
 
 
 def message_telegram(msg):
@@ -28,8 +29,7 @@ def message_telegram(msg):
         return
 
 
-def find_vaccine(query, headers):
-    while True:
+def find_vaccine(query, headers, cowinURL):
         try:
             with httpx.Client(http2=True, verify=False) as client:
                 response = client.get(cowinURL, params=query, headers=headers)
@@ -42,18 +42,18 @@ def find_vaccine(query, headers):
                 centers = availability['centers']
                 for key in centers:
                     print('******* '+key['name']+' ********')
-                    msg = 'Name: __' + key['name'] + '__ Address: ' + key['address'] + ' Fees: ' + key['fee_type']
+                    msg = 'Name: <b>' + key['name'] + '</b> Address: ' + key['address'] + ' Fees: ' + key['fee_type']
                     for capacity in key['sessions']:
-                        print(str(capacity['available_capacity'])+' on date'+str(capacity['date'])+'')
-                        if capacity['available_capacity'] > 0 and capacity['min_age_limit'] < 45 :
+                        print(str(capacity['available_capacity'])+' on date '+str(capacity['date'])+'')
+                        if capacity['available_capacity'] > 0 and capacity['min_age_limit'] < 45:
                             msg = msg + ' Vaccine Brand: ' + str(capacity['vaccine']) + ' For Age: ' + str(capacity['min_age_limit']) + ' Available : ' + str(capacity['available_capacity']) + ' *On Date* ' + str(capacity['date'])
                             logging.info(msg)
-                            print(str(msg))
-                            break
+                            message_telegram(msg)
+                            print(msg)
         except requests.exceptions.RequestException as e:
             logging.error('Unable to reach Cowin Gateway ' + str(e))
         #exit(0)
-        time.sleep(300)  # default Sleep for 5 Min
+
 
 def main():
     today = date.today()
@@ -69,10 +69,15 @@ def main():
         'Connection': 'close',
     }
     # setup parameters
-    telegram_send.send(messages=['Script Started'])
+    # Mumbai = 995
+    # East Delhi = 145
+    # Pune = 363
     query = {'district_id': '363', 'date': search_date}
-    find_vaccine(query, headers)
-    telegram_send.send(messages=['Script exited'])
+    query2 = {'pincode': '110091', 'date': search_date}
+    while True:
+        find_vaccine(query, headers, cowinURLdist)
+        find_vaccine(query2, headers, cowinURLPin)
+        time.sleep(1800)  # default Sleep for 5 Min
     exit(0)
 
 if __name__ == '__main__':

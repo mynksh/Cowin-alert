@@ -1,6 +1,6 @@
 # Cowin-alert For Any Location
 
-This is custom bot script which will alert you on telegram bot is there is any vaccine slot available.
+This is custom bot script which will alert you on telegram bot if there is any vaccine slot available in provided area.
 You customise it to filer as you need.
 
 ## Setting up:
