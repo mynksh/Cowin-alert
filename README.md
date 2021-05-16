@@ -29,6 +29,6 @@ You customize it to filer as you need.
 Inside script 'cowin-alert.py'
 - Change age on line 48 according to your age limit
 - Change district ID on line 73 (by default its Pune '363'); you can get your district id from cowin website.
-
+- Finally, Run `python cowin-alery.py`
 Be safe and get vaccinated !!
 
