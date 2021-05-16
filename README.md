@@ -23,7 +23,7 @@ You customize it to filer as you need.
 - Enter the token received from botFather
 - It will generate a token which you need to send to the newly created channel
 
-[Refer this if you face any issue](https://medium.com/@robertbracco1/how-to-write-a-telegram-bot-to-send-messages-with-python-bcdf45d0a580)
+[Click here for more detailed steps](https://medium.com/@robertbracco1/how-to-write-a-telegram-bot-to-send-messages-with-python-bcdf45d0a580)
 
 ## Running Script
 Inside script 'cowin-alert.py'
